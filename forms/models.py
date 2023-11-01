@@ -84,3 +84,31 @@ class NidhiPrayas(CommonFields):
 
     def __str__(self):
         return self.name
+    
+
+class TideEIR(CommonFields):
+    whatsappNumber = PhoneNumberField(blank = True)
+    instituteName = models.TextField()
+    applicantImage = models.ImageField(upload_to='applicantImage/')
+    aadharImage = models.ImageField(upload_to='applicantImage/')
+    panImage = models.ImageField(upload_to='applicantImage/')
+    teamMemberName = models.CharField(max_length=50)
+    teamMemberInstituteName = models.TextField()
+    teamMemberEducation = models.TextField()
+    teamMemberExperience = models.TextField()
+    projectTitle = models.CharField(max_length=100)
+    techStack = models.TextField()
+    projectVideo = models.FileField(upload_to="projectVideo/")
+    companyName = models.CharField()
+    incorporationDate = models.DateField()
+    companyDescription = models.TextField()
+
+    category = (
+        ('Idea', "Idea"),
+        ('POC', "POC")
+    )
+    categories = models.CharField(max_length=10, choices=category, default='None')
+
+    def __str__(self):
+        return self.name
+    
