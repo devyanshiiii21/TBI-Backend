@@ -99,16 +99,35 @@ class TideEIR(CommonFields):
     projectTitle = models.CharField(max_length=100)
     techStack = models.TextField()
     projectVideo = models.FileField(upload_to="projectVideo/")
-    companyName = models.CharField()
+    companyName = models.CharField(max_length=100)
     incorporationDate = models.DateField()
     companyDescription = models.TextField()
 
-    category = (
+    status = (
         ('Idea', "Idea"),
-        ('POC', "POC")
+        ('POC', "POC"),
+        ('Ready to commercialize', "Ready to commercialize"),
+        ('Prototype', "PROTOTYPE"),
+        ('Ready market product', "Ready Market Product")
     )
-    categories = models.CharField(max_length=10, choices=category, default='None')
+    projectStatus = models.CharField(max_length=40, choices=status, default='None')
 
     def __str__(self):
         return self.name
     
+
+class TideGrant(TideEIR):
+    panNumber = models.CharField(max_length=10, unique=True)
+    aadharNumber = models.CharField(max_length=12, unique=True)
+    applicantProfession = models.TextField()
+    annualIncome = models.CharField(max_length=10)
+    innovationBeneficiary = models.TextField()
+    prototypeCostDetails = models.TextField()
+    projectPeriod = models.TextField()
+    activities = models.TextField()
+    monitrableMilestones = models.TextField()
+    duration = models.TextField()
+    financialSupportStatus = models.TextField()
+
+    def __str__(self):
+        return self.name
